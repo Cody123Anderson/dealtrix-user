@@ -7,6 +7,7 @@ import FaFacebook from 'react-icons/lib/fa/facebook';
 import styles from '../../styles/level2/landing-page.css';
 import buttons from '../../styles/buttons.css';
 import forms from '../../styles/forms.css';
+import config from '../../config';
 import InputSelect from '../level5/input-select';
 import IdeaList from '../level3/idea-list';
 
@@ -67,7 +68,7 @@ export default class LandingPage extends Component {
       state: this.state.state
     };
 
-    axios.post('http://api.serenadedates.com/subscriber', body)
+    axios.post(`${config.API_URL}/subscriber`, body)
     .then(() => {
       this.setState({
         email: '',
@@ -106,7 +107,7 @@ export default class LandingPage extends Component {
         <div className={styles.background}>
           <div className={styles.cover}>
             <div className={styles.content}>
-              <img src="http://res.cloudinary.com/serenade-dates/image/upload/c_scale,h_40/v1471979581/logos/logo_light.png"
+              <img src="https://res.cloudinary.com/serenade-dates/image/upload/c_scale,h_40/v1471979581/logos/logo_light.png"
               className={styles.logo} />
               <div className={this.state.showThanks ? styles.hidden : ''}>
                 <div className={styles.title}>Date Package Giveaways!</div>
