@@ -1,0 +1,129 @@
+@import '../../styles/variables';
+
+.free-ideas-list-item {
+  display: inline-block;
+  margin-top: 50px;
+  width: 95%;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  .image-link {
+    width: 100%;
+  }
+
+  .image {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    display: inline-block;
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .item-body {
+    background-color: #F7F7F7;
+    border: 1px solid #EEEEEE;
+    border-bottom-right-radius: 0;
+    border-top: none;
+    border-top-right-radius: 0;
+    box-sizing: border-box;
+    float: left;
+    height: 300px;
+    position: relative;
+    width: 100%;
+  }
+
+  .idea-title {
+    display: inline-block;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+    width: 98%;
+  }
+
+  .description {
+    display: -webkit-box;
+    font-size: 18px;
+    margin-left: 2.5%;
+    margin-top: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    width: 95%;
+  }
+
+  .button-row {
+    margin-top: 40px;
+    vertical-align: middle;
+  }
+
+  .old-price {
+    color: #545454;
+    text-decoration: line-through;
+    vertical-align: middle;
+  }
+
+  .new-price {
+    color: #FF7175;
+    font-size: 24px;
+    margin: 0 15px;
+    vertical-align: middle;
+  }
+
+  .wishlist {
+    bottom: 15px;
+    display: inline-block;
+    left: 20px;
+    position: absolute;
+  }
+
+  .heart-position {
+    color: #FF7175;
+    font-size: 24px;
+    margin-right: 10px;
+  }
+
+  .save {
+    font-size: 18px;
+    vertical-align: middle;
+  }
+
+  .location {
+    bottom: 15px;
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+  }
+}
+
+@media(min-width: 768px) {
+  .free-ideas-list-item {
+    display: inline-block;
+    width: 85%;
+
+    .image-link {
+      display: inline-block;
+      float: left;
+      width: 45%;
+    }
+
+    .image {
+      border-bottom-left-radius: $border-radius;
+      border-top-left-radius: $border-radius;
+      height: 300px;
+      width: 100%;
+    }
+
+    .item-body {
+      border: 1px solid #EEEEEE;
+      border-bottom-right-radius: $border-radius;
+      border-left: none;
+      border-top-right-radius: $border-radius;
+      width: 55%;
+    }
+  }
+}

@@ -4,9 +4,12 @@
   "description": "User portion of Serenade Dates",
   "main": "server.js",
   "scripts": {
-    "dev": "export NODE_ENV=development && ./node_modules/.bin/webpack --watch --progress",
-    "production": "export NODE_ENV=production && ./node_modules/.bin/webpack --progress",
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --port 3000 --progress",
+    "dev": "export NODE_ENV=development && webpack --watch --progress",
+    "lint": "eslint . --ext .js --fix && npm run lint:sass",
+    "lint:sass": "sass-lint --config .sass-lint.yml --verbose --no-exit",
+    "deploy": "./deploy.sh",
+    "prod": "export NODE_ENV=production && webpack --progress",
+    "start": "export NODE_ENV=development && webpack-dev-server --port 3002 --progress",
     "test": "mocha --compilers js:babel-core/register --require ignore-styles --recursive ./test"
   },
   "repository": {
@@ -26,27 +29,28 @@
   },
   "homepage": "https://github.com/Cody123Anderson/serenade-user#readme",
   "devDependencies": {
-    "babel-core": "^6.18.2",
-    "babel-loader": "^6.2.8",
-    "babel-plugin-react-html-attrs": "^2.0.0",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0",
-    "css-loader": "^0.26.0",
-    "eslint": "^3.10.2",
-    "eslint-plugin-react": "^6.7.1",
-    "postcss-loader": "^1.1.1",
-    "postcss-modules-values": "^1.2.2",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2"
+    "autoprefixer": "^6.7.7",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "css-loader": "^0.27.3",
+    "file-loader": "^0.10.1",
+    "node-sass": "^4.5.1",
+    "postcss-loader": "^1.3.3",
+    "sass-lint": "^1.10.2",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.15.0",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "react": "^15.4.0",
-    "react-dom": "^15.4.0",
-    "react-icons": "^2.2.1",
-    "react-select": "^1.0.0-rc.2"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-icons": "^2.2.3",
+    "react-select": "^1.0.0-rc.3"
   }
 }

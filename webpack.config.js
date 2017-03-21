@@ -1,72 +1,58 @@
 var webpack = require('webpack');
-var values = require('postcss-modules-values');
-var env = process.env.NODE_ENV || 'development';
-var minify = env === 'production';
+const path = require('path');
 
-var config = {
-  context: __dirname,
-  devtool: minify ? 'cheap-module-source-map' : 'eval',
-  entry: './src/components/level1/app.js',
+let filename = 'index.js';
+let devtool = 'source-map';
+let plugins = [
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+  })
+];
+
+if (process.env.NODE_ENV === 'development') {
+  filename = 'index-dev.js';
+  devtool = 'eval-source-map';
+}
+
+const config = {
+  entry: './src/components/root/index.js',
   output: {
-    path: __dirname + '/dist',
-    filename: minify ? 'index.js' : 'index-dev.js'
+    path: path.resolve(__dirname, 'dist'),
+    filename: filename
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  },
-  externals: ['bindings'],
+  devtool: devtool,
   module: {
-    loaders: [
+    rules: [
       {
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'stage-0'],
-          plugins: ['react-html-attrs', 'transform-decorators-legacy']
-        }
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
       },
       {
-        test: /\.css$/,
-        include: /node_modules/,
-        loader: 'style!css!postcss'
-      },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        loaders: [
+        test: /\.s?css$/,
+        use: [
           'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=ps_[name]_[local]--[hash:base64:5]',
-          'postcss-loader'
+          'css-loader?importLoaders=1',
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [path.resolve(__dirname, './src')]
+            }
+          }
         ]
       },
       {
-        test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
-      },
-      {
         test: /\.json$/,
-        loader: 'json-loader'
+        use: 'json-loader'
       },
       {
-        test: /\.(ttf|eot|svg|woff)$/,
-        loader: 'file-loader?name=fonts/[name].[ext]'
+        test: /\.(ttf|eot|svg|jpg|png|woff)$/,
+        use: 'url-loader'
       }
     ]
   },
-  plugins: minify ? [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    })
-  ] : [],
-  postcss: [
-    values
-  ],
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './'
-  },
+  plugins: plugins
 };
 
 module.exports = config;
