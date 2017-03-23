@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+  color: $black80;
+  font-family: 'Roboto';
+  margin: 0;
+
+  a {
+    color: $black70;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 500ms;
+
+    &:visited {
+      color: $black70;
+    }
+
+    &:hover {
+      color: $black90;
+    }
+  }
+}

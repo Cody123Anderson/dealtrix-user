@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import FreeIdeasListItem from './free-ideas-list-item';
 import './free-ideas-list.scss';
@@ -7,31 +8,44 @@ export default class FreeIdeasList extends Component {
   constructor() {
     super();
 
-    this.renderIdeas = this.renderIdeas.bind(this);
+    this.state = {
+      freeIdeas: null
+    };
   }
 
-  renderIdeas(ideas) {
+  componentDidMount() {
+    const url = 'https://api.serenadedates.com/freeideas';
+    axios.get(url)
+      .then((response) => {
+        console.log('response: ', response);
+        this.setState({ freeIdeas: response.data.freeIdeas });
+      })
+      .catch((err) => {
+        console.error('error: ', err);
+      })
+  }
+
+  renderIdeas = (ideas) => {
     if (!ideas) return <div/>;
 
-    return ideas.map((i, index) => {
+    return ideas.map((idea, index) => {
       return (
         <FreeIdeasListItem
-          key={index}
-          id={i._id}
-          description={i.description}
-          image={i.images[0].url}
-          locations={i.locations}
-          title={i.name}
-          retailPrice={i.retail_price}
-          ourPrice={i.our_price} />
+          key={idea.id}
+          id={idea.id}
+          description={idea.description}
+          image={idea.images[0].url}
+          locations={idea.locations}
+          title={idea.name}
+          retailPrice={idea.retailPrice} />
       );
     });
   }
 
   render() {
     return (
-      <div className="free-ideas-list-item">
-        {this.renderIdeas(this.props.freeIdeas)}
+      <div className="free-ideas-list">
+        {this.renderIdeas(this.state.freeIdeas)}
       </div>
     );
   }

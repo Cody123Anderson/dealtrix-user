@@ -3,13 +3,15 @@
 .free-ideas-list-item {
   display: inline-block;
   margin-top: 50px;
-  width: 95%;
+  width: 100%;
 
   &:first-of-type {
     margin-top: 0;
   }
 
   .image-link {
+    display: inline-block;
+    height: 300px;
     width: 100%;
   }
 
@@ -17,7 +19,7 @@
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     display: inline-block;
-    height: 300px;
+    height: 100%;
     object-fit: cover;
     width: 100%;
   }
@@ -31,6 +33,7 @@
     box-sizing: border-box;
     float: left;
     height: 300px;
+    margin-top: -4px;
     position: relative;
     width: 100%;
   }
@@ -45,30 +48,21 @@
   }
 
   .description {
-    display: -webkit-box;
+    display: inline-block;
     font-size: 18px;
     margin-left: 2.5%;
     margin-top: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    width: 95%;
+    text-align: center;
+    width: 92%;
   }
 
   .button-row {
-    margin-top: 40px;
+    margin-top: 20px;
     vertical-align: middle;
   }
 
-  .old-price {
+  .retail-price {
     color: #545454;
-    text-decoration: line-through;
-    vertical-align: middle;
-  }
-
-  .new-price {
-    color: #FF7175;
     font-size: 24px;
     margin: 0 15px;
     vertical-align: middle;
@@ -114,7 +108,7 @@
     .image {
       border-bottom-left-radius: $border-radius;
       border-top-left-radius: $border-radius;
-      height: 300px;
+      height: 100%;
       width: 100%;
     }
 
@@ -123,7 +117,17 @@
       border-bottom-right-radius: $border-radius;
       border-left: none;
       border-top-right-radius: $border-radius;
+      margin-top: 0;
       width: 55%;
+
+      .description {
+        text-align: left;
+      }
+
+      .button-row {
+        margin-top: 40px;
+        vertical-align: middle;
+      }
     }
   }
 }

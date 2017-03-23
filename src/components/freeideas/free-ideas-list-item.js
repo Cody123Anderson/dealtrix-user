@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { hashHistory } from 'react-router';
 import HeartO from 'react-icons/lib/fa/heart-o';
+import Truncate from 'react-truncate';
 
 import './free-ideas-list-item.scss';
+import MultilineText from '../utils/multiline-text';
+import ActionButton from '../buttons/action-button';
 
 export default class FreeIdeasListItem extends Component {
   constructor() {
@@ -9,20 +13,30 @@ export default class FreeIdeasListItem extends Component {
     this.state = { locationText: null };
   }
 
+  onViewMoreClick = () => {
+    hashHistory.push(`/unsponsored/${this.props.id}`);
+  }
+
   render() {
     return (
       <div className="free-ideas-list-item">
-        <a href={`ideas/${this.props.id}`} className="image-link">
+        <a href={`/#/unsponsored/${this.props.id}`} className="image-link">
           <img src={this.props.image} className="image" />
         </a>
 
         <div className="item-body">
           <div className="idea-title">{this.props.title}</div>
-          <div className="description">{this.props.description}</div>
+          <div className="description">
+            <Truncate lines={3} ellipsis="...">
+              <MultilineText text={this.props.description} />
+            </Truncate>
+          </div>
           <div className="button-row">
-            <span className="old-price">${this.props.retailPrice}</span>
-            <span className="new-price">${this.props.ourPrice}</span>
-            {/* <a href={`ideas/${this.props.id}`} className={btn.btnRedLarge}>View More</a> */}
+            <span className="retail-price">${this.props.retailPrice}</span>
+            <ActionButton
+              onClick={this.onViewMoreClick}
+              size="large"
+              text="View More" />
           </div>
           <div className="wishlist">
             <HeartO className="heart-position" />

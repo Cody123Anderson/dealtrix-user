@@ -1,0 +1,39 @@
+@import '../../styles/variables';
+
+.top-bar {
+  background-color: $black90;
+  box-sizing: border-box;
+  color: $white;
+  height: 60px;
+  position: relative;
+  vertical-align: middle;
+  width: 100vw;
+
+  .center-vertically {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  .link {
+    color: $white;
+    right: 30px;
+    text-decoration: none;
+
+    &:hover {
+      color: $white90;
+      text-decoration: none;
+    }
+
+    &:visited {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+
+  img {
+    transform: translate(0, -60%);
+    height: 30px;
+    left: 30px;
+  }
+}
