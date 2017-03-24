@@ -16,7 +16,7 @@
   }
 
   &.large {
-    padding: 15px 20px;
+    padding: 12px 17px;
   }
 
   &:hover,
@@ -34,5 +34,11 @@
     background-color: $red-disabled;
     border: 1px solid $red-disabled;
     cursor: default;
+  }
+}
+
+@media(min-width: 768px) {
+  &.large {
+    padding: 15px 20px;
   }
 }

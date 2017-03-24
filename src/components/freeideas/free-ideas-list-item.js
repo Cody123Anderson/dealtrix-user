@@ -25,7 +25,9 @@ export default class FreeIdeasListItem extends Component {
         </a>
 
         <div className="item-body">
-          <div className="idea-title">{this.props.title}</div>
+          <div className="idea-title">
+            {this.props.title}
+          </div>
           <div className="description">
             <Truncate lines={3} ellipsis="...">
               <MultilineText text={this.props.description} />
@@ -36,7 +38,8 @@ export default class FreeIdeasListItem extends Component {
             <ActionButton
               onClick={this.onViewMoreClick}
               size="large"
-              text="View More" />
+              text="View More"
+              type="button" />
           </div>
           <div className="wishlist">
             <HeartO className="heart-position" />

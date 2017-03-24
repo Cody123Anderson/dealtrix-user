@@ -14,7 +14,12 @@ class TopBar extends Component {
     }
 
     return (
-      <Link className="link center-vertically">Log In</Link>
+      <Link
+        className="link center-vertically"
+        onClick={this.props.openAuthModal}
+      >
+        Log In
+      </Link>
     );
   }
 
@@ -31,6 +36,10 @@ class TopBar extends Component {
       </nav>
     );
   }
+}
+
+TopBar.propTypes = {
+  openAuthModal: React.PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {

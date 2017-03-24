@@ -21,7 +21,7 @@ export default class ActionButton extends Component {
   render() {
     return (
       <button
-      type={this.props.submit ? 'submit' : 'button'}
+      type={this.props.type}
       className={`action-button ${this.props.size}`}
       disabled={this.props.loading}
       onClick={this.props.onClick ? this.onBtnClick : this.doNothing}>
@@ -40,6 +40,6 @@ ActionButton.propTypes = {
   loading: React.PropTypes.bool,
   onClick: React.PropTypes.func,
   size: React.PropTypes.string, // regular, large
-  submit: React.PropTypes.bool,
-  text: React.PropTypes.string.isRequired
+  text: React.PropTypes.string.isRequired,
+  type: React.PropTypes.string.isRequired // button, submit
 };

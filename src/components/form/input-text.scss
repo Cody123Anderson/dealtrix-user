@@ -1,0 +1,46 @@
+@import '../../styles/variables';
+
+.input-text {
+  margin-top: 15px;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  label {
+    display: inline-block;
+    margin-bottom: 2px;
+    width: 100%;
+
+    .error {
+      color: $red;
+      margin-left: 5px;
+    }
+  }
+
+  input {
+    border-radius: $border-radius;
+    border: 1px solid $black10;
+    box-shadow: none;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 15px;
+    height: 37px;
+    outline: 0;
+    padding-left: 10px;
+    vertical-align: top;
+    width: 100%;
+    -webkit-box-shadow: 0 0 0px 1000px $white inset;
+
+    &:-webkit-autofill {
+      background-color: $white !important;
+      color: $black90 !important;
+      box-shadow: 0 0 0px 1000px $white inset !important;
+      -webkit-box-shadow: 0 0 0px 1000px $white inset !important;
+    }
+
+    &.error-border {
+      border-color: $red;
+    }
+  }
+}

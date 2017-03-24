@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+
+.login {
+  margin-top: 50px;
+  padding: 8px;
+  text-align: center;
+
+  .form {
+    background-color: $black5;
+    border: 1px solid $black10;
+    text-align: left;
+  }
+
+  .auth-error {
+    background-color: $error-background;
+    border-radius: $border-radius;
+    color: $error-text;
+    margin-top: 15px;
+    padding: 15px 20px;
+  }
+}

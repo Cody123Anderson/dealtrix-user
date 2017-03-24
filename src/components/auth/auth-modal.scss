@@ -1,0 +1,76 @@
+@import '../../styles/variables';
+
+.auth-modal-overlay {
+  background-color: $black90;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 900001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .auth-modal {
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
+    bottom: auto;
+    box-sizing: border-box;
+    color: #545454;
+    height: 100%;
+    outline: none;
+    overflow: scroll;
+    padding: 30px;
+    position: relative;
+    text-align: center;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+
+    .close-modal {
+      cursor: pointer;
+      font-size: 20px;
+      position: absolute;
+      right: 20px;
+      top: 10px;
+    }
+
+    .contain-logo {
+      .logo {
+        height: 30px;
+      }
+    }
+
+    form {
+      display: inline-block;
+      text-align: left;
+      margin-bottom: 30px;
+      width: 100%;
+
+      .title {
+        font-size: 18px;
+        margin: 15px 0 30px;
+        text-align: center;
+      }
+
+      .button-row {
+        text-align: right;
+      }
+    }
+  }
+}
+
+@media(min-width: 768px) {
+  .auth-modal-overlay {
+    .auth-modal {
+      border-radius: $border-radius;
+      height: auto;
+      width: 500px;
+
+      form {
+        width: 80%;
+      }
+    }
+  }
+}
