@@ -15,6 +15,8 @@ aws s3 sync . s3://www.serenadedates.com \
   --include 'dist/index.js*' \
   --include 'favicon.ico'
 
+echo 'Deployed'
+
 # echo 'Invalidating Cloudfront Cache'
 # aws cloudfront create-invalidation \
 #   --distribution-id [idgoeshere] \
@@ -23,5 +25,3 @@ aws s3 sync . s3://www.serenadedates.com \
 #     /index-prod.html \
 #     /dist/index.js \
 #     /dist/index.js.map
-
-echo 'Deployed'

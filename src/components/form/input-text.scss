@@ -19,6 +19,7 @@
   }
 
   input {
+    appearance: none;
     border-radius: $border-radius;
     border: 1px solid $black10;
     box-shadow: none;
@@ -30,6 +31,7 @@
     padding-left: 10px;
     vertical-align: top;
     width: 100%;
+    -webkit-appearance: none;
     -webkit-box-shadow: 0 0 0px 1000px $white inset;
 
     &:-webkit-autofill {

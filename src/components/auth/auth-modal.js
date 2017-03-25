@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import MdClose from 'react-icons/lib/md/close';
+import { connect } from 'react-redux';
 
 import './auth-modal.scss';
 import InputText from '../form/input-text';
 import ActionButton from '../buttons/action-button';
+import { closeAuthModal } from '../../actions/auth';
 
-export default class AuthModal extends Component {
+class AuthModal extends Component {
   constructor() {
     super();
 
@@ -35,11 +37,11 @@ export default class AuthModal extends Component {
       <Modal
         className="auth-modal"
         overlayClassName="auth-modal-overlay"
-        isOpen={this.props.isOpen}
-        onRequestClose={this.props.requestClose}
+        isOpen={this.props.modalIsOpen}
+        onRequestClose={this.props.closeAuthModal}
         contentLabel="AuthModal"
       >
-        <span className="close-modal" onClick={this.props.requestClose}>
+        <span className="close-modal" onClick={this.props.closeAuthModal}>
           <MdClose />
         </span>
         <div className="contain-logo">
@@ -74,6 +76,10 @@ export default class AuthModal extends Component {
   }
 }
 
-AuthModal.propTypes = {
-  isOpen: React.PropTypes.bool.isRequired
+function mapStateToProps(state) {
+  return {
+    modalIsOpen: state.auth.modalIsOpen
+  };
 }
+
+export default connect(mapStateToProps, { closeAuthModal })(AuthModal);

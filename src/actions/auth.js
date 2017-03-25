@@ -1,33 +1,35 @@
 import axios from 'axios';
 import { hashHistory } from 'react-router';
 
-import { API_URL } from '../config/settings';
+import { API_URL } from '../config';
 import {
   AUTH_USER,
   AUTH_ERROR,
-  UNAUTH_USER
+  UNAUTH_USER,
+  OPEN_AUTH_MODAL,
+  CLOSE_AUTH_MODAL
 } from './types';
 
-export function loginUser(username, password) {
-  return function(dispatch) {
-    axios.post(`${API_URL}/admin/login`, { username, password})
-      .then((response) => {
-        // Request was successful
-        // Update state to indicate user is authenticated
-        dispatch({ type: AUTH_USER });
-
-        // Save the token to local storage
-        localStorage.setItem('token', response.data.token);
-
-        // Navigate user to homepage
-        hashHistory.push('/');
-      })
-      .catch(() => {
-        // Invalid Username and Password
-        dispatch(authError('Incorrect username and password'));
-      });
-  };
-}
+// export function loginUser(username, password) {
+//   return function(dispatch) {
+//     axios.post(`${API_URL}/admin/login`, { username, password})
+//       .then((response) => {
+//         // Request was successful
+//         // Update state to indicate user is authenticated
+//         dispatch({ type: AUTH_USER });
+//
+//         // Save the token to local storage
+//         localStorage.setItem('token', response.data.token);
+//
+//         // Navigate user to homepage
+//         hashHistory.push('/');
+//       })
+//       .catch(() => {
+//         // Invalid Username and Password
+//         dispatch(authError('Incorrect username and password'));
+//       });
+//   };
+// }
 
 export function authError(error) {
   return {
@@ -41,5 +43,19 @@ export function logoutUser() {
 
   return {
     type: UNAUTH_USER
+  };
+}
+
+export function openAuthModal() {
+  return {
+    type: OPEN_AUTH_MODAL
+  };
+}
+
+
+export function closeAuthModal() {
+  console.log('in action!')
+  return {
+    type: CLOSE_AUTH_MODAL
   };
 }

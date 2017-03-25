@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import './top-bar.scss';
+import { openAuthModal } from '../../actions/auth';
 
 class TopBar extends Component {
   renderLinks() {
@@ -38,14 +39,10 @@ class TopBar extends Component {
   }
 }
 
-TopBar.propTypes = {
-  openAuthModal: React.PropTypes.func.isRequired
-}
-
 function mapStateToProps(state) {
   return {
     authenticated: state.auth.authenticated
   };
 }
 
-export default connect(mapStateToProps)(TopBar);
+export default connect(mapStateToProps, { openAuthModal })(TopBar);
