@@ -1,29 +1,22 @@
 @import '../../styles/variables';
 
-.seconday-button {
-  background-color: $red;
-  color: $white;
+.secondary-button {
+  background-color: $white;
+  color: $black80;
   display: inline-block;
   border: 0;
   border-radius: $border-radius;
+  box-sizing: border-box;
   font-size: 14px;
-  margin-top: 15px;
+  padding: 0;
   text-decoration: none;
   text-transform: uppercase;
-
-  &.regular {
-    padding: 9px 15px 8px;
-  }
-
-  &.large {
-    padding: 15px 20px;
-  }
 
   &:hover,
   &:active,
   &:focus {
-    background-color: $red-hover;
-    color: $white;
+    background-color: $white;
+    color: $black;
     cursor: pointer;
     outline: none;
     text-decoration: none;
@@ -31,8 +24,12 @@
   }
 
   &:disabled {
-    background-color: $red-disabled;
-    border: 1px solid $red-disabled;
     cursor: default;
+  }
+}
+
+@media(min-width: 768px) {
+  &.large {
+    padding: 15px 20px;
   }
 }

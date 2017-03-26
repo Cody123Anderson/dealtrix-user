@@ -21,7 +21,7 @@
     color: #545454;
     height: 100%;
     outline: none;
-    overflow: scroll;
+    overflow: auto;
     padding: 30px;
     position: relative;
     text-align: center;
@@ -48,13 +48,30 @@
       margin-bottom: 30px;
       width: 100%;
 
+      &.hidden {
+        display: none;
+      }
+
       .title {
         font-size: 18px;
         margin: 15px 0 30px;
         text-align: center;
       }
 
+      .login-error {
+        color: $error-text;
+        margin-top: 15px;
+        text-align: right;
+      }
+
       .button-row {
+        margin-top: 15px;
+        text-align: right;
+      }
+
+      .forgot-password {
+        font-size: 14px;
+        margin-top: 15px;
         text-align: right;
       }
     }

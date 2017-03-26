@@ -3,14 +3,18 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import './top-bar.scss';
-import { openAuthModal } from '../../actions/auth';
+import { openAuthModal, logoutUser } from '../../actions/auth';
 
 class TopBar extends Component {
   renderLinks() {
     if (this.props.authenticated) {
       // Show Dropdown with logout link
       return (
-        <Link className="link center-vertically" to="/logout">Log Out</Link>
+        <Link
+          className="link center-vertically"
+          onClick={this.props.logoutUser} >
+          Log Out
+        </Link>
       );
     }
 
@@ -33,7 +37,6 @@ class TopBar extends Component {
             className="center-vertically" />
         </Link>
         {this.renderLinks()}
-        {/* <Dropdown title="admin" /> */}
       </nav>
     );
   }
@@ -45,4 +48,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { openAuthModal })(TopBar);
+export default connect(mapStateToProps, { openAuthModal, logoutUser })(TopBar);

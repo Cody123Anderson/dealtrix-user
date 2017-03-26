@@ -10,26 +10,55 @@ import {
   CLOSE_AUTH_MODAL
 } from './types';
 
-// export function loginUser(username, password) {
-//   return function(dispatch) {
-//     axios.post(`${API_URL}/admin/login`, { username, password})
-//       .then((response) => {
-//         // Request was successful
-//         // Update state to indicate user is authenticated
-//         dispatch({ type: AUTH_USER });
-//
-//         // Save the token to local storage
-//         localStorage.setItem('token', response.data.token);
-//
-//         // Navigate user to homepage
-//         hashHistory.push('/');
-//       })
-//       .catch(() => {
-//         // Invalid Username and Password
-//         dispatch(authError('Incorrect username and password'));
-//       });
-//   };
-// }
+export function loginUser(email, password) {
+  return (dispatch) => {
+    axios.post(`${API_URL}/user/login`, { email, password })
+      .then((response) => {
+        // Request was successful
+        // Update state to indicate user is authenticated
+        dispatch({ type: AUTH_USER });
+
+        // Save the token to local storage
+        localStorage.setItem('token', response.data.token);
+
+        // Close the auth modal
+        dispatch({ type: CLOSE_AUTH_MODAL });
+
+        // Clear existing error messages if any
+        dispatch(authError(''));
+      })
+      .catch((err) => {
+        console.error('error loggin in user: ', err);
+        // Invalid Email and Password
+        dispatch(authError('Incorrect email and password'));
+      });
+  };
+}
+
+export function registerUser(email, password) {
+  return (dispatch) => {
+    axios.post(`${API_URL}/user/signup`, { email, password })
+      .then((response) => {
+        // Request was successful
+        // Update state to indicate user is authenticated
+        dispatch({ type: AUTH_USER });
+
+        // Save the token to local storage
+        localStorage.setItem('token', response.data.token);
+
+        // Close the auth modal
+        dispatch({ type: CLOSE_AUTH_MODAL });
+
+        // Clear existing error messages if any
+        dispatch(authError(''));
+      })
+      .catch((err, response) => {
+        console.error('error registering user: ', err);
+        // Email already exists
+        dispatch(authError('An account with this email already exists'));
+      });
+  };
+}
 
 export function authError(error) {
   return {

@@ -16,7 +16,8 @@ export default class SecondaryButton extends Component {
     return (
       <button
       type="button"
-      className={`seconday-button ${this.props.size}`}
+      style={{ margin: this.props.margin }}
+      className="secondary-button"
       onClick={this.props.onClick ? this.onBtnClick : this.doNothing}>
         {this.props.text}
       </button>
@@ -25,11 +26,11 @@ export default class SecondaryButton extends Component {
 }
 
 SecondaryButton.defaultProps = {
-  size: 'regular'
+  margin: '0'
 };
 
 SecondaryButton.propTypes = {
   onClick: React.PropTypes.func,
-  size: React.PropTypes.string, // regular, large
+  margin: React.PropTypes.string,
   text: React.PropTypes.string.isRequired
 };
