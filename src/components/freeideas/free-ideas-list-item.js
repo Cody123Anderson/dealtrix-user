@@ -43,7 +43,7 @@ export default class FreeIdeasListItem extends Component {
           </div>
           <div className="wishlist">
             <HeartO className="heart-position" />
-            <span className="save">Save for later</span>
+            <span className="save">Add to favorites</span>
           </div>
           <span className="location">
             {this.state.locationText}

@@ -54,35 +54,35 @@
     }
 
     .button-row {
-      margin-top: 20px;
+      margin-top: 22px;
       vertical-align: middle;
     }
 
     .retail-price {
       color: #545454;
-      font-size: 24px;
+      font-size: 18px;
       margin: 0 15px;
       vertical-align: middle;
     }
 
     .wishlist {
-      bottom: 55px;
+      bottom: 85px;
       cursor: pointer;
       display: inline-block;
       left: 20px;
       position: absolute;
+
+      .heart-position {
+        color: #FF7175;
+        font-size: 20px;
+        margin-right: 10px;
+      }
+
+      .save {
+        font-size: 14px;
+        vertical-align: middle;
+      }
     }
-  }
-
-  .heart-position {
-    color: #FF7175;
-    font-size: 24px;
-    margin-right: 10px;
-  }
-
-  .save {
-    font-size: 18px;
-    vertical-align: middle;
   }
 
   .location {
@@ -128,8 +128,24 @@
         font-size: 18px;
       }
 
+      .button-row {
+        margin-top: 40px;
+      }
+
+      .retail-price {
+        font-size: 22px;
+      }
+
       .wishlist {
         bottom: 15px;
+
+        .heart-position {
+          font-size: 24px;
+        }
+
+        .save {
+          font-size: 18px;
+        }
       }
     }
   }

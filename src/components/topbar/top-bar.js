@@ -31,10 +31,8 @@ class TopBar extends Component {
   render() {
     return (
       <nav className="top-bar">
-        <Link to="/" className="center-vertically">
-          <img
-            src="https://res.cloudinary.com/serenade-dates/image/upload/v1471979581/logos/logo_dark.png"
-            className="center-vertically" />
+        <Link to="/" className="logo">
+          <img src="https://res.cloudinary.com/serenade-dates/image/upload/v1471979581/logos/logo_dark.png" />
         </Link>
         {this.renderLinks()}
       </nav>
