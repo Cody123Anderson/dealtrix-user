@@ -5,10 +5,6 @@
   margin-top: 0;
   width: 100%;
 
-  &:first-of-type {
-    margin-top: 0;
-  }
-
   .image-link {
     display: inline-block;
     height: 300px;
@@ -40,14 +36,14 @@
     .idea-title {
       display: inline-block;
       font-size: 18px;
-      text-align: center;
-      width: 98%;
+      text-align: left;
+      width: 100%;
     }
 
     .description {
       display: inline-block;
-      font-size: 14px;
-      margin-top: 20px;
+      font-size: 15px;
+      margin-top: 10px;
       text-align: left;
       width: 100%;
     }
@@ -65,15 +61,17 @@
     }
 
     .wishlist {
+      bottom: 75px;
       box-sizing: border-box;
       cursor: pointer;
-      margin-top: 22px;
+      left: 15px;
+      position: absolute;
       text-align: left;
 
       .heart-position {
         color: #FF7175;
         font-size: 20px;
-        margin-right: 10px;
+        margin-right: 6px;
       }
 
       .save {
@@ -84,10 +82,17 @@
   }
 
   .location {
-    bottom: 15px;
-    font-size: 20px;
+    bottom: 78px;
+    font-size: 14px;
+    margin: 0;
     position: absolute;
-    right: 20px;
+    right: 15px;
+
+    .location-icon {
+      color: $red;
+      font-size: 16px;
+      margin-right: 3px;
+    }
   }
 }
 
@@ -96,6 +101,10 @@
     display: inline-block;
     margin-top: 20px;
     width: 85%;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
 
     .image-link {
       display: inline-block;
@@ -111,7 +120,7 @@
     }
 
     .item-body {
-      border: 1px solid #EEEEEE;
+      border: 1px solid $black20;
       border-bottom-right-radius: $border-radius;
       border-left: none;
       border-top-right-radius: $border-radius;
@@ -125,6 +134,7 @@
 
       .description {
         font-size: 18px;
+        margin-top: 20px;
       }
 
       .button-row {
@@ -136,12 +146,18 @@
       }
 
       .wishlist {
-        .heart-position {
-          font-size: 24px;
-        }
+        bottom: 15px;
+        left: 20px;
+      }
 
-        .save {
+      .location {
+        bottom: 18px;
+        font-size: 14px;
+        right: 20px;
+
+        .location-icon {
           font-size: 18px;
+          margin-right: 4px;
         }
       }
     }

@@ -32,7 +32,7 @@
   &:disabled {
     background-color: $red-disabled;
     border: 1px solid $red-disabled;
-    cursor: default;
+    cursor: not-allowed;
   }
 }
 

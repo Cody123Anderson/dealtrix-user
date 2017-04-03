@@ -1,0 +1,20 @@
+@import '../../styles/variables';
+
+.location {
+  font-size: 15px;
+  line-height: 1.3;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    color: $red;
+    display: inline-block;
+    font-size: 40px;
+    padding: 15px 0;
+  }
+
+  .contents {
+    display: inline-block;
+  }
+}

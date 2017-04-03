@@ -1,13 +1,11 @@
 @import '../../styles/variables';
-@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-body, html {
-  height: 100%;
-  width: 100%;
+.home {
 }
 
-body {
-  color: $black80;
-  font-family: 'Roboto';
-  margin: 0;
+@media(min-width: 768px) {
+  .home {
+    padding-top: 30px;
+    text-align: center;
+  }
 }

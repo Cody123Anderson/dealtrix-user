@@ -1,28 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
-import FreeIdeasListItem from './free-ideas-list-item';
 import './free-ideas-list.scss';
+import FreeIdeasListItem from './free-ideas-list-item';
+import { fetchFreeIdeas } from '../../actions/free-ideas';
 
-export default class FreeIdeasList extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      freeIdeas: null
-    };
-  }
-
+class FreeIdeasList extends Component {
   componentDidMount() {
-    const url = 'https://api.serenadedates.com/freeideas';
-    axios.get(url)
-      .then((response) => {
-        console.log('response: ', response);
-        this.setState({ freeIdeas: response.data.freeIdeas });
-      })
-      .catch((err) => {
-        console.error('error: ', err);
-      })
+    this.props.fetchFreeIdeas();
   }
 
   renderIdeas = (ideas) => {
@@ -45,8 +31,16 @@ export default class FreeIdeasList extends Component {
   render() {
     return (
       <div className="free-ideas-list">
-        {this.renderIdeas(this.state.freeIdeas)}
+        {this.renderIdeas(this.props.freeIdeas)}
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    freeIdeas: state.freeIdeas.all
+  };
+}
+
+export default connect(mapStateToProps, { fetchFreeIdeas })(FreeIdeasList);

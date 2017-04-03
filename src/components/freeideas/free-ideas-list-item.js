@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { hashHistory } from 'react-router';
 import HeartO from 'react-icons/lib/fa/heart-o';
+import MdLocationOn from 'react-icons/lib/md/location-on';
 import Truncate from 'react-truncate';
 
 import './free-ideas-list-item.scss';
@@ -11,6 +12,15 @@ export default class FreeIdeasListItem extends Component {
   constructor() {
     super();
     this.state = { locationText: null };
+  }
+
+  componentDidMount() {
+    if (this.props.locations.length > 1) {
+      this.setState({ locationText: `${this.props.locations.length} locations`});
+    } else {
+      const location = this.props.locations[0];
+      this.setState({ locationText: `${location.city}, ${location.state}`});
+    }
   }
 
   onViewMoreClick = () => {
@@ -46,6 +56,7 @@ export default class FreeIdeasListItem extends Component {
             <span className="save">Add to favorites</span>
           </div>
           <span className="location">
+            <MdLocationOn className="location-icon" />
             {this.state.locationText}
           </span>
         </div>

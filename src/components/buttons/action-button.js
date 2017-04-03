@@ -23,7 +23,7 @@ export default class ActionButton extends Component {
       <button
       type={this.props.type}
       className={`action-button ${this.props.size}`}
-      disabled={this.props.loading}
+      disabled={this.props.disabled}
       onClick={this.props.onClick ? this.onBtnClick : this.doNothing}>
         {this.props.text}
       </button>
@@ -32,11 +32,13 @@ export default class ActionButton extends Component {
 }
 
 ActionButton.defaultProps = {
+  disabled: false,
   loading: false,
   size: 'regular'
 };
 
 ActionButton.propTypes = {
+  disabled: React.PropTypes.bool,
   loading: React.PropTypes.bool,
   onClick: React.PropTypes.func,
   size: React.PropTypes.string, // regular, large
