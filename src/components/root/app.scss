@@ -11,22 +11,44 @@ body {
   font-family: 'Roboto';
   margin: 0;
 
-  a {
-    color: $black70;
-    cursor: pointer;
-    text-decoration: none;
-    transition: color 500ms;
+  .app {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
 
-    &:visited {
+    a {
       color: $black70;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 500ms;
+
+      &:visited {
+        color: $black70;
+      }
+
+      &:hover {
+        color: $black90;
+      }
     }
 
-    &:hover {
-      color: $black90;
+    div {
+      box-sizing: border-box;
+    }
+
+    .app-contents {
+      display: inline-block;
+      max-width: $max-width;
+      width: 100%;
     }
   }
+}
 
-  div {
-    box-sizing: border-box;
+@media(min-width: 768px) {
+  body {
+    .app {
+      .app-contents {
+        padding: 0 15px;
+      }
+    }
   }
 }

@@ -10,7 +10,9 @@ export default class App extends Component {
       <div className="app">
         <AuthModal />
         <TopBar />
-        {this.props.children}
+        <div className="app-contents">
+          {this.props.children}
+        </div>
       </div>
     );
   }

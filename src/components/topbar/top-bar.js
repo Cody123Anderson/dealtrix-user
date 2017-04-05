@@ -11,7 +11,7 @@ class TopBar extends Component {
       // Show Dropdown with logout link
       return (
         <Link
-          className="link center-vertically"
+          className="link"
           onClick={this.props.logoutUser} >
           Log Out
         </Link>
@@ -20,7 +20,7 @@ class TopBar extends Component {
 
     return (
       <Link
-        className="link center-vertically"
+        className="link"
         onClick={this.props.openAuthModal}
       >
         Log In
@@ -30,12 +30,18 @@ class TopBar extends Component {
 
   render() {
     return (
-      <nav className="top-bar">
-        <Link to="/" className="logo">
-          <img src="https://res.cloudinary.com/serenade-dates/image/upload/v1471979581/logos/logo_dark.png" />
-        </Link>
-        {this.renderLinks()}
-      </nav>
+      <div className="top-bar">
+        <div className="top-bar-contents">
+          <div className="left">
+            <Link to="/" className="logo">
+              <img src="https://res.cloudinary.com/serenade-dates/image/upload/v1471979581/logos/logo_dark.png" />
+            </Link>
+          </div>
+          <div className="right">
+            {this.renderLinks()}
+          </div>
+        </div>
+      </div>
     );
   }
 }

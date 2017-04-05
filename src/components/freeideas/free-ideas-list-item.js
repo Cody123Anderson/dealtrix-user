@@ -11,6 +11,7 @@ import ActionButton from '../buttons/action-button';
 export default class FreeIdeasListItem extends Component {
   constructor() {
     super();
+    
     this.state = { locationText: null };
   }
 
