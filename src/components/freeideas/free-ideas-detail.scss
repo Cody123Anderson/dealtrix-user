@@ -15,12 +15,27 @@
     text-align: left;
     width: 100%;
 
-    .image {
-      display: inline-block;
-      height: 100%;
-      object-fit: cover;
-      width: 100%;
+    .contain-image {
+      position: relative;
+
+      .image {
+        display: inline-block;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .wishlist {
+        color: #FF7175;
+        cursor: pointer;
+        font-size: 25px;
+        position: absolute;
+        right: 15px;
+        top: 10px;
+      }
     }
+
+
 
     .tags {
       padding: 0 10px;
@@ -31,7 +46,7 @@
         margin-right: 10px;
 
         &:last-of-type {
-          margin-left: 0;
+          margin-right: 0;
         }
 
         .icon {
@@ -102,29 +117,73 @@
     .desktop {
       box-sizing: border-box;
       display: inline-block;
-      max-width: 1200px;
       width: 100%;
 
       .left-col {
         display: inline-block;
-        padding-left: 15px;
         text-align: center;
         width: 60%;
 
         .contents {
           display: inline-block;
           text-align: left;
-        }
 
-        .image {
-          max-width: 600px;
-          width: 100%;
+          .contain-image {
+            position: relative;
+
+            .image {
+              max-width: 600px;
+              width: 100%;
+            }
+
+            .wishlist {
+              color: #FF7175;
+              cursor: pointer;
+              font-size: 30px;
+              position: absolute;
+              right: 20px;
+              top: 10px;
+            }
+          }
+
+          .tags {
+            margin-top: 7px;
+
+            .tag {
+              display: inline-block;
+              font-size: 15px;
+              margin-right: 15px;
+
+              &:last-of-type {
+                margin-right: 0;
+              }
+
+              .icon {
+                color: $red;
+                font-size: 20px;
+                margin-right: 3px;
+              }
+            }
+          }
+
+          .description {
+            margin-top: 30px;
+
+            .title {
+              font-size: 22px;
+            }
+
+            .contents {
+              margin-top: 10px;
+              max-width: 600px;
+            }
+          }
         }
       }
 
       .right-col {
         display: inline-block;
-        padding: 0 15px 0 30px;
+        padding-left: 50px;
         text-align: left;
         vertical-align: top;
         width: 40%;
@@ -134,8 +193,51 @@
         }
 
         .business-name {
-          font-size: 16px;
+          color: $black50;
+          font-size: 20px;
           margin-top: 5px;
+        }
+
+        .pricing {
+          align-items: center;
+          display: flex;
+          font-weight: bold;
+          margin-top: 30px;
+
+          .retail {
+            color: $black50;
+            margin-right: 15px;
+            text-decoration: line-through;
+          }
+
+          .ours {
+            font-size: 36px;
+          }
+        }
+
+        .contain-button {
+          margin-top: 30px;
+        }
+
+        .fine-print {
+          margin-top: 50px;
+
+          .title {
+            font-size: 22px;
+          }
+
+          .contents {
+            font-size: 16px;
+            margin-top: 10px;
+          }
+        }
+
+        .locations {
+          margin-top: 50px;
+
+          .title {
+            font-size: 22px;
+          }
         }
       }
     }

@@ -53,3 +53,7 @@ export default class Location extends PureComponent {
     );
   }
 }
+
+Location.propTypes = {
+  data: React.PropTypes.object.isRequired
+};
