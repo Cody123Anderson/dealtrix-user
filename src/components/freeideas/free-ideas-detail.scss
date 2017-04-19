@@ -80,6 +80,20 @@
       padding: 0 10px;
     }
 
+    .fine-print {
+      font-size: 15px;
+      margin-top: 30px;
+      padding: 0 10px;
+
+      .title {
+        padding: 0;
+      }
+
+      .contents {
+        margin-top: 10px;
+      }
+    }
+
     .footer {
       align-items: center;
       background-color: $black90;

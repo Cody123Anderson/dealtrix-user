@@ -43,6 +43,7 @@ class FreeIdeasDetail extends Component {
 
     return (
       <div className="free-ideas-detail">
+
         <div className="mobile">
           <div className="contain-image">
             <img className="image" src={freeIdea.images[0].url} />
@@ -60,6 +61,10 @@ class FreeIdeasDetail extends Component {
             <div>Locations Near You</div>
             {this.renderLocations(freeIdea.locations)}
           </div>
+          <div className="fine-print">
+            <div className="title">Purchase Details</div>
+            <div className="contents">{FREE_IDEA_FINE_PRINT}</div>
+          </div>
           <div className="footer">
             <span className="retail-price">
               Retail Price<br/>
@@ -75,6 +80,7 @@ class FreeIdeasDetail extends Component {
             </span>
           </div>
         </div>
+
         <div className="desktop">
           <div className="left-col">
             <div className="contents">
