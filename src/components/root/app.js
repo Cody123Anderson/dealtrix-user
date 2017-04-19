@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import './app.scss';
 import AuthModal from '../auth/auth-modal';
 import TopBar from '../topbar/top-bar';
+import { fetchFreeIdeas } from '../../actions/free-ideas';
 
-export default class App extends Component {
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchFreeIdeas();
+  }
+
   render() {
+    if (!this.props.freeIdeas) return <div />;
+
     return (
       <div className="app">
         <AuthModal />
@@ -17,3 +25,11 @@ export default class App extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    freeIdeas: state.freeIdeas.all
+  };
+}
+
+export default connect(mapStateToProps, { fetchFreeIdeas })(App);

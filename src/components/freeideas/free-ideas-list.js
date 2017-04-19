@@ -4,16 +4,9 @@ import axios from 'axios';
 
 import './free-ideas-list.scss';
 import FreeIdeasListItem from './free-ideas-list-item';
-import { fetchFreeIdeas } from '../../actions/free-ideas';
 
 class FreeIdeasList extends Component {
-  componentDidMount() {
-    this.props.fetchFreeIdeas();
-  }
-
   renderIdeas = (ideas) => {
-    if (!ideas) return <div/>;
-
     return ideas.map((idea, index) => {
       return (
         <FreeIdeasListItem
@@ -37,10 +30,14 @@ class FreeIdeasList extends Component {
   }
 }
 
+FreeIdeasList.propTypes = {
+  freeIdeas: React.PropTypes.array.isRequired
+};
+
 function mapStateToProps(state) {
   return {
     freeIdeas: state.freeIdeas.all
   };
 }
 
-export default connect(mapStateToProps, { fetchFreeIdeas })(FreeIdeasList);
+export default connect(mapStateToProps, null)(FreeIdeasList);
