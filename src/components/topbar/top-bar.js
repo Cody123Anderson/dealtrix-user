@@ -4,28 +4,36 @@ import { Link } from 'react-router';
 
 import './top-bar.scss';
 import { openAuthModal, logoutUser } from '../../actions/auth';
+import Dropdown from '../utils/dropdown';
 
 class TopBar extends Component {
   renderLinks() {
     if (this.props.authenticated) {
-      // Show Dropdown with logout link
+      const links = [
+        // { title: 'Favorites', onClick: this.onFavoritesClick },
+        { title: 'Log Out', onClick: this.onLogoutClick }
+      ];
+
       return (
-        <Link
-          className="link"
-          onClick={this.props.logoutUser} >
-          {this.props.user ? this.props.user.email.split('@')[0] : 'My Account'}
-        </Link>
+        <Dropdown
+          links={links}
+          title={this.props.user ? this.props.user.email.split('@')[0] : 'My Account'} />
       );
     }
 
     return (
-      <Link
-        className="link"
-        onClick={this.props.openAuthModal}
-      >
-        Log In / Register
+      <Link className="link" onClick={this.props.openAuthModal}>
+        Log In <span className="red">/</span> Register
       </Link>
     );
+  }
+
+  onFavoritesClick = () => {
+    console.log('inFavorites')
+  }
+
+  onLogoutClick = () => {
+    this.props.logoutUser();
   }
 
   render() {
