@@ -21,7 +21,7 @@ if (token) {
   const timestamp = Math.round(new Date().getTime() / 1000);
   const decoded = jwtDecode(token);
   if (decoded.exp && timestamp < decoded.exp) {
-    store.dispatch({ type: AUTH_USER });
+    store.dispatch({ type: AUTH_USER, payload: token });
   }
 }
 

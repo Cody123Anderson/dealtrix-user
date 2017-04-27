@@ -5,10 +5,24 @@ import './app.scss';
 import AuthModal from '../auth/auth-modal';
 import TopBar from '../topbar/top-bar';
 import { fetchFreeIdeas } from '../../actions/free-ideas';
+import { getUser } from '../../actions/user';
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchFreeIdeas();
+
+    if (this.props.authenticated) {
+      this.props.getUser(localStorage.getItem('token'));
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.authenticated !== nextProps.authenticated
+      && nextProps.authenticated
+      && nextProps.token
+    ) {
+      this.props.getUser(nextProps.token);
+    }
   }
 
   render() {
@@ -28,8 +42,10 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    freeIdeas: state.freeIdeas.all
+    authenticated: state.auth.authenticated,
+    freeIdeas: state.freeIdeas.all,
+    token: state.auth.token
   };
 }
 
-export default connect(mapStateToProps, { fetchFreeIdeas })(App);
+export default connect(mapStateToProps, { fetchFreeIdeas, getUser })(App);

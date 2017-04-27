@@ -13,7 +13,7 @@ class TopBar extends Component {
         <Link
           className="link"
           onClick={this.props.logoutUser} >
-          Log Out
+          {this.props.user ? this.props.user.email.split('@')[0] : 'My Account'}
         </Link>
       );
     }
@@ -23,7 +23,7 @@ class TopBar extends Component {
         className="link"
         onClick={this.props.openAuthModal}
       >
-        Log In
+        Log In / Register
       </Link>
     );
   }
@@ -48,7 +48,8 @@ class TopBar extends Component {
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.auth.authenticated
+    authenticated: state.auth.authenticated,
+    user: state.user
   };
 }
 

@@ -5,30 +5,33 @@ import { API_URL } from '../config';
 import {
   AUTH_USER,
   AUTH_ERROR,
-  UNAUTH_USER,
+  CLEAR_USER,
+  GET_USER,
+  CLOSE_AUTH_MODAL,
   OPEN_AUTH_MODAL,
-  CLOSE_AUTH_MODAL
+  UNAUTH_USER
 } from './types';
 
 export function loginUser(email, password) {
   return (dispatch) => {
     axios.post(`${API_URL}/user/login`, { email, password })
       .then((response) => {
-        // Request was successful
+        const token = response.data.token;
+
         // Update state to indicate user is authenticated
-        dispatch({ type: AUTH_USER });
+        dispatch({ type: AUTH_USER, payload: token });
 
         // Save the token to local storage
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('token', token);
 
         // Close the auth modal
         dispatch({ type: CLOSE_AUTH_MODAL });
 
-        // Clear existing error messages if any
+        // Clear existing error messages and user if any
         dispatch(authError(''));
       })
       .catch((err) => {
-        console.error('error loggin in user: ', err);
+        console.error('error logging in user: ', err);
         // Invalid Email and Password
         dispatch(authError('Incorrect email and password'));
       });
@@ -39,12 +42,13 @@ export function registerUser(email, password) {
   return (dispatch) => {
     axios.post(`${API_URL}/user/signup`, { email, password })
       .then((response) => {
-        // Request was successful
+        const token = response.data.token;
+
         // Update state to indicate user is authenticated
-        dispatch({ type: AUTH_USER });
+        dispatch({ type: AUTH_USER, payload: token });
 
         // Save the token to local storage
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('token', token);
 
         // Close the auth modal
         dispatch({ type: CLOSE_AUTH_MODAL });
@@ -68,11 +72,11 @@ export function authError(error) {
 }
 
 export function logoutUser() {
-  localStorage.removeItem('token');
-
-  return {
-    type: UNAUTH_USER
-  };
+  return (dispatch) => {
+    localStorage.removeItem('token');
+    dispatch({ type: UNAUTH_USER });
+    dispatch({ type: CLEAR_USER });
+  }
 }
 
 export function openAuthModal() {
@@ -83,7 +87,6 @@ export function openAuthModal() {
 
 
 export function closeAuthModal() {
-  console.log('in action!')
   return {
     type: CLOSE_AUTH_MODAL
   };

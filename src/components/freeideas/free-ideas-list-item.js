@@ -1,18 +1,25 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
-import HeartO from 'react-icons/lib/fa/heart-o';
 import MdLocationOn from 'react-icons/lib/md/location-on';
 import Truncate from 'react-truncate';
+import PropTypes from 'prop-types';
 
 import './free-ideas-list-item.scss';
 import MultilineText from '../utils/multiline-text';
 import ActionButton from '../buttons/action-button';
+import FavoritesHeart from '../buttons/favorites-heart';
+import { authError, openAuthModal } from '../../actions/auth';
+import { updateUser } from '../../actions/user';
 
-export default class FreeIdeasListItem extends Component {
+class FreeIdeasListItem extends PureComponent {
   constructor() {
     super();
-    
-    this.state = { locationText: null };
+
+    this.state = {
+      inFavorites: false,
+      locationText: null
+    };
   }
 
   componentDidMount() {
@@ -22,10 +29,62 @@ export default class FreeIdeasListItem extends Component {
       const location = this.props.locations[0];
       this.setState({ locationText: `${location.city}, ${location.state}`});
     }
+
+    const inFavorites = this.inFavoritesCheck(this.props.userFavorites);
+    this.setState({ inFavorites });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.userFavorites !== nextProps.userFavorites) {
+      const inFavorites = this.inFavoritesCheck(nextProps.userFavorites);
+      this.setState({ inFavorites });
+    }
+  }
+
+  inFavoritesCheck(userFavorites) {
+    if (userFavorites.indexOf(this.props.id) !== -1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  onFavoritesClick = () => {
+    if (!this.props.authenticated) {
+      this.props.authError('Please log in to add this date to your favorites');
+      this.props.openAuthModal();
+      return;
+    }
+
+    let userFavorites = this.props.userFavorites.slice();
+    const inFavorites = this.inFavoritesCheck(userFavorites);
+
+    if (inFavorites) {
+      // Remove from favorites
+      const index = userFavorites.indexOf(this.props.id);
+      userFavorites.splice(index, 1);
+    } else {
+      // Add to favorites
+      userFavorites.push(this.props.id)
+    }
+
+    // Show user the change immediately
+    this.setState({ inFavorites: !this.state.inFavorites });
+
+    const body = { favorites: userFavorites };
+    this.props.updateUser(body, this.props.token);
   }
 
   onViewMoreClick = () => {
     hashHistory.push(`/unsponsored/${this.props.id}`);
+  }
+
+  renderFavoritesText(inFavorites) {
+    if (inFavorites) {
+      return 'Added to favorites';
+    } else {
+      return 'Add to favorites';
+    }
   }
 
   render() {
@@ -52,9 +111,14 @@ export default class FreeIdeasListItem extends Component {
               text="View More"
               type="button" />
           </div>
-          <div className="wishlist">
-            <HeartO className="heart-position" />
-            <span className="save">Add to favorites</span>
+          <div className="wishlist" onClick={this.onFavoritesClick}>
+            <FavoritesHeart
+              inFavorites={this.state.inFavorites}
+              color="#FF7175"
+              size="20px" />
+            <span className="save">
+              {this.renderFavoritesText(this.state.inFavorites)}
+            </span>
           </div>
           <span className="location">
             <MdLocationOn className="location-icon" />
@@ -65,3 +129,23 @@ export default class FreeIdeasListItem extends Component {
     );
   }
 }
+
+FreeIdeasListItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  token: PropTypes.string,
+  userFavorites: PropTypes.array.isRequired
+};
+
+function mapStateToProps(state) {
+  return {
+    authenticated: state.auth.authenticated,
+    token: state.auth.token,
+    userFavorites: state.user.favorites
+  };
+}
+
+export default connect(mapStateToProps, {
+  authError,
+  openAuthModal,
+  updateUser
+})(FreeIdeasListItem);

@@ -101,6 +101,7 @@ class AuthModal extends Component {
             src="https://res.cloudinary.com/serenade-dates/image/upload/c_scale,h_51/v1471979581/logos/logo_light.png"
             className="logo" />
         </div>
+
         <form
           className={'login-form' + (this.state.showLoginForm ? '' : ' hidden')}
           onSubmit={this.onLoginFormSubmit}>
@@ -133,6 +134,7 @@ class AuthModal extends Component {
             <Link to="/forgot">Forgot password</Link>
           </div>
         </form>
+
         <form
           className={'register-form' + (this.state.showLoginForm ? ' hidden' : '')}
           onSubmit={this.onRegisterFormSubmit}>
@@ -162,6 +164,7 @@ class AuthModal extends Component {
               type="submit" />
           </div>
         </form>
+        
       </Modal>
     );
   }
