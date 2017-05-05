@@ -19,7 +19,7 @@
     position: absolute;
     right: 0;
     top: 40px;
-    min-width: 150px;
+    min-width: 200px;
     z-index: 1000000;
 
     &.hide {
@@ -30,7 +30,7 @@
       background-color: $black90;
       color: $white;
       display: block;
-      padding: 7px 12px;
+      padding: 12px 12px;
       text-align: left;
 
       &:last-of-type {
@@ -39,7 +39,8 @@
       }
 
       &:hover {
-        color: $white80;
+        background-color: $black80;
+        color: $white;
       }
     }
   }

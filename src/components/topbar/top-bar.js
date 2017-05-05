@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
 import './top-bar.scss';
 import { openAuthModal, logoutUser } from '../../actions/auth';
@@ -10,14 +10,16 @@ class TopBar extends Component {
   renderLinks() {
     if (this.props.authenticated) {
       const links = [
-        // { title: 'Favorites', onClick: this.onFavoritesClick },
+        { title: 'Favorites', onClick: this.onFavoritesClick },
         { title: 'Log Out', onClick: this.onLogoutClick }
       ];
 
       return (
         <Dropdown
           links={links}
-          title={this.props.user ? this.props.user.email.split('@')[0] : 'My Account'} />
+          title={
+            this.props.user ? this.props.user.email.split('@')[0] : 'My Account'
+          } />
       );
     }
 
@@ -29,7 +31,7 @@ class TopBar extends Component {
   }
 
   onFavoritesClick = () => {
-    console.log('inFavorites')
+    hashHistory.push('favorites');
   }
 
   onLogoutClick = () => {

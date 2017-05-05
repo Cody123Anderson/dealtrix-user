@@ -14,3 +14,6 @@ module.exports.FETCH_FREE_IDEAS = 'FETCH_FREE_IDEAS';
 module.exports.CLEAR_USER = 'CLEAR_USER';
 module.exports.GET_USER = 'GET_USER';
 module.exports.UPDATE_USER = 'UPDATE_USER';
+
+// Favorites Actions
+module.exports.GET_USER_FAVORITES = 'GET_USER_FAVORITES';

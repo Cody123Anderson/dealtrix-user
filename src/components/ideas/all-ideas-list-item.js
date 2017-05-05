@@ -5,14 +5,14 @@ import MdLocationOn from 'react-icons/lib/md/location-on';
 import Truncate from 'react-truncate';
 import PropTypes from 'prop-types';
 
-import './free-ideas-list-item.scss';
+import './all-ideas-list-item.scss';
 import MultilineText from '../utils/multiline-text';
 import ActionButton from '../buttons/action-button';
 import FavoritesHeart from '../buttons/favorites-heart';
 import { authError, openAuthModal } from '../../actions/auth';
 import { updateUser } from '../../actions/user';
 
-class FreeIdeasListItem extends PureComponent {
+class AllIdeasListItem extends PureComponent {
   constructor() {
     super();
 
@@ -76,7 +76,7 @@ class FreeIdeasListItem extends PureComponent {
   }
 
   onViewMoreClick = () => {
-    hashHistory.push(`/unsponsored/${this.props.id}`);
+    hashHistory.push(`/${this.props.type}/${this.props.id}`);
   }
 
   renderFavoritesText(inFavorites) {
@@ -89,8 +89,8 @@ class FreeIdeasListItem extends PureComponent {
 
   render() {
     return (
-      <div className="free-ideas-list-item">
-        <a href={`/#/unsponsored/${this.props.id}`} className="image-link">
+      <div className="all-ideas-list-item">
+        <a href={`/#/${this.props.type}/${this.props.id}`} className="image-link">
           <img src={this.props.image} className="image" />
         </a>
 
@@ -130,9 +130,10 @@ class FreeIdeasListItem extends PureComponent {
   }
 }
 
-FreeIdeasListItem.propTypes = {
+AllIdeasListItem.propTypes = {
   id: PropTypes.string.isRequired,
   token: PropTypes.string,
+  type: PropTypes.string, // sponsored or unsponsored
   userFavorites: PropTypes.array.isRequired
 };
 
@@ -148,4 +149,4 @@ export default connect(mapStateToProps, {
   authError,
   openAuthModal,
   updateUser
-})(FreeIdeasListItem);
+})(AllIdeasListItem);
