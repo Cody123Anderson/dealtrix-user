@@ -9,7 +9,7 @@ echo 'Running Production Build'
 npm run prod
 
 echo 'Deploying to AWS S3 Bucket'
-aws s3 sync . s3://www.serenadedates.com \
+aws s3 sync . s3://www.dealtrix.com \
   --exclude '*' \
   --include 'index-prod.html' \
   --include 'dist/index.js*' \

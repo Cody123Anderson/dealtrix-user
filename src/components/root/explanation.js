@@ -23,19 +23,19 @@ export default class Explanation extends PureComponent {
         <span onClick={this.closeExplanation}>
           <MdClose className="close-icon" />
         </span>
-        <div className="title">You've found the person, now find the date!</div>
+        <div className="title">The best deals on Earth!</div>
         <div className="contain-features">
           <span className="feature">
             <MdCheckCircle className="icon" />
-            <span className="text">First Date</span>
+            <span className="text">Date Ideas</span>
           </span>
           <span className="feature">
             <MdCheckCircle className="icon" />
-            <span className="text">Date Night</span>
+            <span className="text">Restaurants</span>
           </span>
           <span className="feature">
             <MdCheckCircle className="icon" />
-            <span className="text">Anniversary</span>
+            <span className="text">Activities</span>
           </span>
         </div>
       </div>

@@ -98,14 +98,14 @@ class AuthModal extends Component {
         </span>
         <div className="contain-logo">
           <img
-            src="https://res.cloudinary.com/serenade-dates/image/upload/c_scale,h_51/v1471979581/logos/logo_light.png"
+            src="https://res.cloudinary.com/serenade-dates/image/upload/v1499187474/logos/dealtrix-logo-light.png"
             className="logo" />
         </div>
 
         <form
           className={'login-form' + (this.state.showLoginForm ? '' : ' hidden')}
           onSubmit={this.onLoginFormSubmit}>
-          <div className="title">Log in to Your Serenade Account</div>
+          <div className="title">Log in to Your Dealtrix Account</div>
           <InputText
             error={this.state.loginEmailError}
             label="Email"
@@ -138,7 +138,7 @@ class AuthModal extends Component {
         <form
           className={'register-form' + (this.state.showLoginForm ? ' hidden' : '')}
           onSubmit={this.onRegisterFormSubmit}>
-          <div className="title">Register a Serenade Account</div>
+          <div className="title">Register a Dealtrix Account</div>
           <InputText
             error={this.state.registerEmailError}
             label="Email"
@@ -164,7 +164,7 @@ class AuthModal extends Component {
               type="submit" />
           </div>
         </form>
-        
+
       </Modal>
     );
   }
