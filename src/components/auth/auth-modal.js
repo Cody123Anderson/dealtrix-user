@@ -98,7 +98,7 @@ class AuthModal extends Component {
         </span>
         <div className="contain-logo">
           <img
-            src="https://res.cloudinary.com/serenade-dates/image/upload/v1499187474/logos/dealtrix-logo-light.png"
+            src="https://res.cloudinary.com/serenade-dates/logos/dealtrix-logo-dark.png"
             className="logo" />
         </div>
 

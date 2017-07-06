@@ -44,7 +44,7 @@ class TopBar extends Component {
         <div className="top-bar-contents">
           <div className="left">
             <Link to="/" className="logo">
-              <img src="https://res.cloudinary.com/serenade-dates/image/upload/v1499187474/logos/dealtrix-logo-light.png" />
+              <img src="https://res.cloudinary.com/serenade-dates/logos/dealtrix-logo-light.png" />
             </Link>
           </div>
           <div className="right">
