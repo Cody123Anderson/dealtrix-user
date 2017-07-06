@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
 
 import './favorites.scss';
-import AllIdeasList from './all-ideas-list';
+import DealsList from './deals-list';
 import { getUserFavorites } from '../../actions/favorites';
 
 class Favorites extends Component {
@@ -12,7 +12,7 @@ class Favorites extends Component {
       hashHistory.push('/');
       return;
     }
-    
+
     this.props.getUserFavorites(this.props.token);
   }
 
@@ -26,7 +26,7 @@ class Favorites extends Component {
     return (
       <div className="favorites">
         <div className="title">Your Favorites</div>
-        <AllIdeasList freeIdeas={this.props.freeIdeas} />
+        <DealsList deals={this.props.freeIdeas} />
       </div>
     )
   }

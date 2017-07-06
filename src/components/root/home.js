@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 
 import './home.scss';
 import Explanation from './explanation';
-import AllIdeasList from '../ideas/all-ideas-list';
+import DealsList from '../deals/deals-list';
 
 class Home extends Component {
   render() {
     return (
       <div className="home">
         <Explanation />
-        <AllIdeasList freeIdeas={this.props.freeIdeas} />
+        <DealsList deals={this.props.freeIdeas} />
       </div>
     )
   }

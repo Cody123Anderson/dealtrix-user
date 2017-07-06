@@ -1,25 +1,27 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { hashHistory } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 import MdLocationOn from 'react-icons/lib/md/location-on';
 import Truncate from 'react-truncate';
-import PropTypes from 'prop-types';
+import { string, array } from 'prop-types';
 
-import './all-ideas-list-item.scss';
+import './deals-list-item.scss';
 import MultilineText from '../utils/multiline-text';
 import ActionButton from '../buttons/action-button';
 import FavoritesHeart from '../buttons/favorites-heart';
 import { authError, openAuthModal } from '../../actions/auth';
 import { updateUser } from '../../actions/user';
 
-class AllIdeasListItem extends PureComponent {
-  constructor() {
-    super();
+class DealsListItem extends PureComponent {
+  static propTypes = {
+    id: string.isRequired,
+    token: string,
+    userFavorites: array.isRequired
+  }
 
-    this.state = {
-      inFavorites: false,
-      locationText: null
-    };
+  state = {
+    inFavorites: false,
+    locationText: null
   }
 
   componentDidMount() {
@@ -76,7 +78,7 @@ class AllIdeasListItem extends PureComponent {
   }
 
   onViewMoreClick = () => {
-    hashHistory.push(`/${this.props.type}/${this.props.id}`);
+    hashHistory.push(`/deals/${this.props.id}`);
   }
 
   renderFavoritesText(inFavorites) {
@@ -89,10 +91,10 @@ class AllIdeasListItem extends PureComponent {
 
   render() {
     return (
-      <div className="all-ideas-list-item">
-        <a href={`/#/${this.props.type}/${this.props.id}`} className="image-link">
+      <div className="deals-list-item">
+        <Link to={`/deals/${this.props.id}`} className="image-link">
           <img src={this.props.image} className="image" />
-        </a>
+        </Link>
 
         <div className="item-body">
           <div className="idea-title">
@@ -130,13 +132,6 @@ class AllIdeasListItem extends PureComponent {
   }
 }
 
-AllIdeasListItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  token: PropTypes.string,
-  type: PropTypes.string, // sponsored or unsponsored
-  userFavorites: PropTypes.array.isRequired
-};
-
 function mapStateToProps(state) {
   return {
     authenticated: state.auth.authenticated,
@@ -149,4 +144,4 @@ export default connect(mapStateToProps, {
   authError,
   openAuthModal,
   updateUser
-})(AllIdeasListItem);
+})(DealsListItem);

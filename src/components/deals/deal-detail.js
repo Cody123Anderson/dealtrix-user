@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HeartO from 'react-icons/lib/fa/heart-o';
 
-import './free-ideas-detail.scss';
+import './deal-detail.scss';
 import { authError, openAuthModal } from '../../actions/auth';
 import { fetchFreeIdea, clearFreeIdea } from '../../actions/free-ideas';
 import { updateUser } from '../../actions/user';
@@ -13,13 +13,9 @@ import MdCheckCircle from 'react-icons/lib/md/check-circle';
 import Location from '../locations/location';
 import { FREE_IDEA_FINE_PRINT } from '../../config';
 
-class FreeIdeasDetail extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      inFavorites: false
-    };
+class DealDetail extends Component {
+  state = {
+    inFavorites: false
   }
 
   componentDidMount() {
@@ -47,6 +43,10 @@ class FreeIdeasDetail extends Component {
     } else {
       return false;
     }
+  }
+
+  onDealClick = () => {
+    alert('Deal Clicked: Need to add functionality still.');
   }
 
   onFavoritesClick = () => {
@@ -95,16 +95,15 @@ class FreeIdeasDetail extends Component {
   }
 
   render() {
-    if (!this.props.freeIdea) return <div/>;
+    if (!this.props.deal) return <div/>;
 
-    const freeIdea = this.props.freeIdea;
+    const { deal } = this.props;
 
     return (
-      <div className="free-ideas-detail">
-
+      <div className="deal-detail">
         <div className="mobile">
           <div className="contain-image">
-            <img className="image" src={freeIdea.images[0].url} />
+            <img className="image" src={deal.images[0].url} />
             <div className="wishlist" onClick={this.onFavoritesClick}>
               <FavoritesHeart
                 color="#FF7175"
@@ -112,15 +111,15 @@ class FreeIdeasDetail extends Component {
                 inFavorites={this.state.inFavorites} />
             </div>
           </div>
-          <div className="tags">{this.renderTags(freeIdea.tags)}</div>
-          <div className="title">{freeIdea.name}</div>
-          <div className="business-name">at {freeIdea.businessName}</div>
+          <div className="tags">{this.renderTags(deal.tags)}</div>
+          <div className="title">{deal.name}</div>
+          <div className="business-name">at {deal.businessName}</div>
           <div className="description">
-            <MultilineText text={freeIdea.description} />
+            <MultilineText text={deal.description} />
           </div>
           <div className="locations">
             <div>Locations Near You</div>
-            {this.renderLocations(freeIdea.locations)}
+            {this.renderLocations(deal.locations)}
           </div>
           <div className="fine-print">
             <div className="title">Purchase Details</div>
@@ -129,14 +128,14 @@ class FreeIdeasDetail extends Component {
           <div className="footer">
             <span className="retail-price">
               Retail Price<br/>
-              ${freeIdea.retailPrice}
+              ${deal.retailPrice}
             </span>
             <span
-              title={`${freeIdea.businessName} is currently not sponsoring this date on our site. It is simply listed on our site as an additional date idea for your benefit.`}
+              title={`${deal.businessName} is currently not sponsoring this date on our site. It is simply listed on our site as an additional date idea for your benefit.`}
               className="footer-button">
               <ActionButton
-                disabled={true}
-                text="No Discount"
+                onClick={this.onDealClick}
+                text="Get Deal Card"
                 type="button" />
             </span>
           </div>
@@ -146,7 +145,7 @@ class FreeIdeasDetail extends Component {
           <div className="left-col">
             <div className="contents">
               <div className="contain-image">
-                <img className="image" src={freeIdea.images[0].url} />
+                <img className="image" src={deal.images[0].url} />
                 <span className="wishlist" onClick={this.onFavoritesClick}>
                   <FavoritesHeart
                     color="#FF7175"
@@ -154,27 +153,27 @@ class FreeIdeasDetail extends Component {
                     inFavorites={this.state.inFavorites} />
                 </span>
               </div>
-              <div className="tags">{this.renderTags(freeIdea.tags)}</div>
+              <div className="tags">{this.renderTags(deal.tags)}</div>
               <div className="description">
                 <div className="title">Description of Date</div>
                 <div className="contents">
-                  <MultilineText text={freeIdea.description} />
+                  <MultilineText text={deal.description} />
                 </div>
               </div>
             </div>
           </div>
           <div className="right-col">
-            <div className="title">{freeIdea.name}</div>
-            <div className="business-name">at {freeIdea.businessName}</div>
+            <div className="title">{deal.name}</div>
+            <div className="business-name">at {deal.businessName}</div>
             <div className="pricing">
-              <span className="retail">${freeIdea.retailPrice}</span>
-              <span className="ours">${freeIdea.retailPrice}</span>
+              <span className="retail">${deal.retailPrice}</span>
+              <span className="ours">${deal.retailPrice}</span>
             </div>
             <div className="contain-button">
               <ActionButton
-                disabled={true}
+                onClick={this.onDealClick}
                 size="large"
-                text="No Discount"
+                text="Get Deal Card"
                 type="button" />
             </div>
             <div className="fine-print">
@@ -183,7 +182,7 @@ class FreeIdeasDetail extends Component {
             </div>
             <div className="locations">
               <div className="title">Locations Near You</div>
-              {this.renderLocations(freeIdea.locations)}
+              {this.renderLocations(deal.locations)}
             </div>
           </div>
         </div>
@@ -195,7 +194,7 @@ class FreeIdeasDetail extends Component {
 function mapStateToProps(state) {
   return {
     authenticated: state.auth.authenticated,
-    freeIdea: state.freeIdeas.current,
+    deal: state.freeIdeas.current,
     token: state.auth.token,
     userFavorites: state.user.favorites
   };
@@ -207,4 +206,4 @@ export default connect(mapStateToProps, {
   fetchFreeIdea,
   openAuthModal,
   updateUser
-})(FreeIdeasDetail);
+})(DealDetail);

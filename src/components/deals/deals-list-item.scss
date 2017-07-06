@@ -1,6 +1,6 @@
 @import '../../styles/variables';
 
-.all-ideas-list-item {
+.deals-list-item {
   display: inline-block;
   margin-top: 0;
   width: 100%;
@@ -92,7 +92,7 @@
 }
 
 @media(min-width: 768px) {
-  .all-ideas-list-item {
+  .deals-list-item {
     display: inline-block;
     margin-top: 20px;
 

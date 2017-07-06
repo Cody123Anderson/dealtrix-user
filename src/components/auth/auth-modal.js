@@ -105,7 +105,7 @@ class AuthModal extends Component {
         <form
           className={'login-form' + (this.state.showLoginForm ? '' : ' hidden')}
           onSubmit={this.onLoginFormSubmit}>
-          <div className="title">Log in to Your Dealtrix Account</div>
+          <div className="title">Log in to Your Account</div>
           <InputText
             error={this.state.loginEmailError}
             label="Email"
@@ -138,7 +138,7 @@ class AuthModal extends Component {
         <form
           className={'register-form' + (this.state.showLoginForm ? ' hidden' : '')}
           onSubmit={this.onRegisterFormSubmit}>
-          <div className="title">Register a Dealtrix Account</div>
+          <div className="title">Register for Free</div>
           <InputText
             error={this.state.registerEmailError}
             label="Email"
