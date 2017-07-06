@@ -125,14 +125,14 @@ class DealDetail extends Component {
             <div className="title">Purchase Details</div>
             <div className="contents">{FREE_IDEA_FINE_PRINT}</div>
           </div>
-          <div className="footer">
+          <div className="bottom-bar">
             <span className="retail-price">
               Retail Price<br/>
               ${deal.retailPrice}
             </span>
             <span
               title={`${deal.businessName} is currently not sponsoring this date on our site. It is simply listed on our site as an additional date idea for your benefit.`}
-              className="footer-button">
+              className="bottom-bar-button">
               <ActionButton
                 onClick={this.onDealClick}
                 text="Get Deal Card"
