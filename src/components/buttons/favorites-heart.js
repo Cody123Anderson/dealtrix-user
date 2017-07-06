@@ -1,11 +1,17 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import { string, bool } from 'prop-types';
 import Heart from 'react-icons/lib/fa/heart';
 import HeartO from 'react-icons/lib/fa/heart-o';
 
 import './favorites-heart.scss';
 
 export default class FavoritesHeart extends PureComponent {
+  static propTypes = {
+    color: string.isRequired,
+    inFavorites: bool.isRequired,
+    size: string.isRequired, // i.e. 20px
+  }
+
   renderHeart(inFavorites) {
     const heartStyle = {
       color: this.props.color,
@@ -26,10 +32,4 @@ export default class FavoritesHeart extends PureComponent {
       </span>
     );
   }
-}
-
-FavoritesHeart.propTypes = {
-  color: PropTypes.string.isRequired,
-  inFavorites: PropTypes.bool.isRequired,
-  size: PropTypes.string.isRequired, // i.e. 20px
 }

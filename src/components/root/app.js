@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './app.scss';
 import AuthModal from '../auth/auth-modal';
 import TopBar from '../topbar/top-bar';
+import Footer from '../footer';
 import { fetchFreeIdeas } from '../../actions/free-ideas';
 import { getUser } from '../../actions/user';
 
@@ -35,6 +36,7 @@ class App extends Component {
         <div className="app-contents">
           {this.props.children}
         </div>
+        <Footer />
       </div>
     );
   }
